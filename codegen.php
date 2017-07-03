@@ -28,11 +28,10 @@ if(!isset($_SESSION['valid_vote_admin'])){
 <tbody>
 <?php
 
-require_once('../vault.php');
-
+require_once('vault.php');
 if(file_exists('codegened.txt')) exit(); //코드를 다시 생성하려면 codegened.txt를 제거.
-$file = fopen('codegened.txt','w');
-
+$file = fopen('codegened.txt','w') or die("인증 파일이 안열립니다");
+#이게 각 반의 사람 수
 $a = [
     1=>[
         1=>17,
@@ -70,6 +69,7 @@ $b = [];
 
 $conn = new PDO('mysql:dbname=sshs_vote;host=localhost;','admin',$db_pw);
 $conn->query('TRUNCATE TABLE voted_status');
+#voted_status 테이블에는
 
 for($i=1;$i<=3;++$i){
     for($j=1;$j<=8;++$j){
@@ -84,20 +84,21 @@ for($i=1;$i<=3;++$i){
                     break;
                 }
             }
-            
+
             $K = sprintf('%02d',$k);
-            
+
             $query = $conn->prepare('INSERT INTO voted_status (ucode,voted) VALUES(:ucode,0)');
             $query->bindValue(':ucode',$str);
             $query->execute();
-            
+
             echo '<tr><td>'.$str.'</td><td>'.$i.$j.$K.'</td></tr>';
         }
     }
 }
 
-fwrite($file,'code generated');
+$res = fwrite($file,'code generated');
 fclose($file);
+echo ($res);
 
 ?>
 </tbody>

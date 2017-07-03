@@ -1,11 +1,10 @@
 <?php
-$db_pw = 'eesyqDhrfzQntHR8';
-$time_start = strtotime('2016/06/30 14:10:00');
-$time_end = strtotime('2016/06/30 15:10:00');
+#실행하는 컴퓨터의 MySQL admin 계정의 pw가 이것.
+$db_pw = 'xu#H7wt80d';
+$time_start = strtotime('2017/07/03 09:10:00');
+$time_end = strtotime('2017/07/03 15:10:00');
 
 date_default_timezone_set('Asia/Seoul');
-
-//2시 10분에 시작해서, 3시 10분에 끝난다.
 
 //timezone이 Asia/Seoul인지 확인. 2016.06.28 오후 11:45 확인했음.
 ?>
