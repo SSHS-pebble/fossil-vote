@@ -1,6 +1,6 @@
 <?php
 
-require_once('../vault.php');
+require_once('vault.php');
 
 session_start();
 
@@ -11,7 +11,7 @@ function alert_redir($msg, $success = false){
     else{
         // http_response_code(403);
     }
-    echo '<script>alert("'.$msg.'");document.location.href="/vote/index.php";</script>';
+    echo '<script>alert("'.$msg.'");document.location.href="/index.php";</script>';
     exit();
 }
 
@@ -29,7 +29,7 @@ if($time_start<time() && time()<$time_end){
         exit;
     }
     $conn = new PDO('mysql:dbname=sshs_vote;host=localhost;','admin',$db_pw);
-    
+
     //코드 확인하기
     $query = $conn->prepare('SELECT * FROM `voted_status` WHERE `ucode` = :ucode');
     $query->bindValue(':ucode',$_POST['ucode']);
@@ -42,7 +42,7 @@ if($time_start<time() && time()<$time_end){
         alert_redir('이미 투표하셨습니다.');
         exit;
     }
-    
+
     //투표 참여 표시하기
     $query = $conn->prepare('UPDATE `voted_status` SET `voted` = 1 WHERE `ucode` = :ucode AND `voted` = 0');
     $query->bindValue(':ucode',$_POST['ucode']);
@@ -52,7 +52,7 @@ if($time_start<time() && time()<$time_end){
         alert_redir('투표권한이 없습니다. 코드를 잘못 입력했거나, 이미 투표하셨습니다.');
         exit;
     }
-    
+
     //투표하기
     $query = $conn->prepare('UPDATE `vote_result` SET `voteCount` = `voteCount` + 1 WHERE `candId` = :candId');
     $query->bindValue(':candId',$_POST['candId'],PDO::PARAM_INT);
@@ -62,9 +62,9 @@ if($time_start<time() && time()<$time_end){
         exit;
     }
     //코드가 맞지만 정상적인 접근을 하지 않았을 경우 투표권이 사라지는 상황이 발생 가능..한가?
-    
+
     alert_redir('성공적으로 투표되었습니다.',true);
-    
+
 }
 else{
     alert_redir('선거 기간이 아닙니다!');

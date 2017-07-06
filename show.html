@@ -1,0 +1,104 @@
+<html>
+<head>
+
+<title>2017-2018 학생회장 선거 결과</title>
+<meta http-equiv="content-type" content="text/html" charset="utf-8">
+<meta http-equiv="Content-Language" content="ko">
+<link rel="stylesheet" type="text/css" href="common.css">
+
+</head>
+
+<body></body>
+
+<div class="frame">
+<table style="margin:auto">
+  <thead>
+    <tr>
+      <th colspan="2"><h1>서울과학고 2017-2018 학생회장 선거 결과</h1></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="cand1">
+      <td style="width:192px">
+        <img src="cand1.jpg">
+      </td>
+      <td rowspan="2" style="width:600px">
+        <div id="bar1" class="bar" style="background-color:darkred;width:0;display:none">220</div>
+      </td>
+    <tr class="cand1">
+      <td>
+        1번 : <b>황준오</b> 김호중 김채린
+      </td>
+    </tr>
+
+    <tr class="cand2">
+      <td style="width:192px">
+        <img src="cand2.jpg">
+      </td>
+      <td rowspan="2" style="width:600px">
+        <div id="bar2" class="bar" style="background-color:darkgreen;width:0;display:none">200</div>
+      </td>
+    <tr class="cand2">
+      <td>
+        2번 : <b>이의호</b> 윤현상 김동하
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<p id="finished">개표 중입니다. . .</p>
+
+<br>
+
+</div>
+<script>
+
+var bar = [
+    null,
+    document.getElementById("bar1"),
+    document.getElementById("bar2")
+]
+var total = [
+    null,
+    parseInt(bar[1].innerText),
+    parseInt(bar[2].innerText)
+]
+var current = [null,0,0,0]
+
+bar[1].innerText = bar[2].innerText = '0'
+bar[1].style.display = bar[2].style.display = "block"
+
+var votes = []
+for(var i=1;i<=2;++i){
+    var count = total[i]
+    while(count>0){
+        --count
+        votes.push(i)
+    }
+}
+// Fisher-Yates Shuffle
+var count = votes.length
+while(count>0){
+    var index = Math.floor(Math.random()*count)
+    --count
+    var temp = votes[count]
+    votes[count] = votes[index]
+    votes[index] = temp
+}
+
+var id = setInterval(function(){
+    if(!votes.length){
+      document.getElementById("finished").innerText = "개표가 완료되었습니다."
+      return
+    }
+    var i = votes.pop()
+    ++current[i]
+    bar[i].innerText = current[i]
+    bar[i].style.width = 1.5 * current[i] + 'px'
+},50)
+
+
+</script>
+</body>
+</html>
