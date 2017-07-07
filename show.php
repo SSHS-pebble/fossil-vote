@@ -14,7 +14,7 @@ $conn = new PDO('mysql:dbname=sshs_vote;host=localhost;','admin',$db_pw);
 session_start();
 
 //서울과학고 컴퓨터 관리실.
-if(!isset($_SESSION['valid_vote_admin'])){
+if(!$_SESSION['valid_vote_admin']){
     http_response_code(403);
     exit;
 }

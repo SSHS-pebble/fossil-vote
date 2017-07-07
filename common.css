@@ -3,27 +3,6 @@ body{
     font-family: arial, 맑은 고딕;
 }
 
-.frame{
-    background-color: gold;
-    border: 5px solid goldenrod;
-    border-radius: 8px;
-    text-align: center;
-
-    box-shadow: 4px 4px 2px #888888;
-}
-
-.cand1{
-    background-color: tomato;
-}
-
-.cand2{
-    background-color: chartreuse;
-}
-
-.cand3{
-    background-color: cornflowerblue;
-}
-
 .bar{
     width: 0px;
     font-size: 24px;
@@ -31,22 +10,6 @@ body{
     padding-left: 10px;
     padding-top: 55px;
     overflow: visible;
-}
-
-table{
-    margin-left: 12px;
-    margin-right: 12px;
-
-    table-layout: fixed;
-    
-    border: none;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-td{
-    border: none;
-    text-align: center;
 }
 
 img{

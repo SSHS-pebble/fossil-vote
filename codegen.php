@@ -69,6 +69,9 @@ $b = [];
 
 $conn = new PDO('mysql:dbname=sshs_vote;host=localhost;','admin',$db_pw);
 $conn->query('TRUNCATE TABLE voted_status');
+$conn->query('TRUNCATE TABLE vote_result');
+$conn->query('INSERT INTO vote_result VALUE(1, 0);');
+$conn->query('INSERT INTO vote_result VALUE(2, 0);');
 #voted_status 테이블에는
 
 for($i=1;$i<=3;++$i){
