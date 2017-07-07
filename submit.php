@@ -2,25 +2,25 @@
 
 require_once('vault.php');
 
-session_start();
-
 function alert_redir($msg, $success = false){
     if($success){
-        // http_response_code(201);
+         http_response_code(201);
     }
     else{
-        // http_response_code(403);
+         http_response_code(403);
     }
     echo '<script>alert("'.$msg.'");document.location.href="/index.php";</script>';
     exit();
 }
+session_start();
+if(!isset($_SESSION)){ alert_redir('올바른 경로가 아닙니다.', false); }
 
 if($time_start<time() && time()<$time_end){
-    if(!isset($_SESSION['valid_vote_entry'])){
+    if(!$_SESSION['valid_vote_entry']){
         alert_redir('정상적인 접근이 아닙니다. (AJAX 등을 이용한 요청은 허용되지 않습니다.)');
         exit;
     }
-    if(!isset($_SESSION['valid_vote_location'])){
+    if(!$_SESSION['valid_vote_location'] || $_SESSION['valid_vote_admin']){
         alert_redir('정상적인 접근이 아닙니다. (서울과학고 컴퓨터실 외에 투표는 허용되지 않습니다.)');
         exit;
     }

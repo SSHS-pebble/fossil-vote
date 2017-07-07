@@ -7,7 +7,7 @@
 session_start();
 
 //서울과학고 컴퓨터 관리실.
-if(!isset($_SESSION['valid_vote_admin'])){
+if(!$_SESSION['valid_vote_admin']){
     http_response_code(403);
     exit;
 }
@@ -34,16 +34,26 @@ $file = fopen('codegened.txt','w') or die("인증 파일이 안열립니다");
 #이게 각 반의 사람 수
 $a = [
     1=>[
+        1=>16,
+        2=>16,
+        3=>16,
+        4=>16,
+        5=>16,
+        6=>16,
+        7=>16,
+        8=>17
+    ],
+    2=>[
         1=>17,
-        2=>17,
-        3=>17,
+        2=>16,
+        3=>16,
         4=>16,
         5=>16,
         6=>16,
         7=>16,
         8=>16
     ],
-    2=>[
+    3=>[
         1=>17,
         2=>17,
         3=>17,
@@ -52,16 +62,6 @@ $a = [
         6=>16,
         7=>16,
         8=>17
-    ],
-    3=>[
-        1=>15,
-        2=>15,
-        3=>15,
-        4=>16,
-        5=>16,
-        6=>16,
-        7=>16,
-        8=>16
     ]
 ];
 
@@ -69,6 +69,9 @@ $b = [];
 
 $conn = new PDO('mysql:dbname=sshs_vote;host=localhost;','admin',$db_pw);
 $conn->query('TRUNCATE TABLE voted_status');
+$conn->query('TRUNCATE TABLE vote_result');
+$conn->query('INSERT INTO vote_result VALUE(1, 0);');
+$conn->query('INSERT INTO vote_result VALUE(2, 0);');
 #voted_status 테이블에는
 
 for($i=1;$i<=3;++$i){
