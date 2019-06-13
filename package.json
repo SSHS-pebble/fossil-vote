@@ -1,0 +1,11 @@
+{
+  "name": "any-name",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-static": "^5.0.0"
+  }
+}

@@ -47,30 +47,6 @@
   </form>
 
   <script>
-      
-function validate(num){
-    if(num.length!=6){
-        return false;
-    }
-    
-    num = parseInt(num,16);
-    var p = Math.floor(num / 16);
-    var q = num % 16;
-    return (p%11===q);
-}
-
-function showValidate(num){
-    if(num.length && !validate(num)){
-        document.getElementById("validation_error").innerHTML = "정확한 코드가 아닙니다.";
-    }
-    else{
-        document.getElementById("validation_error").innerHTML = " ";
-    }
-}
-
-function validateForm(){
-    return validate(document.getElementById("ucode").value);
-}
 
 function send(cand){
   document.getElementById("cand").value = cand;
