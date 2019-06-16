@@ -19,10 +19,10 @@ module.exports = async (ctx) => {
 
     if(!res.status){
         // console.log("ERROR!");
-        await ctx.redirect('/vote');
+        await ctx.render('fail.html');
     }
     else{
         // console.log("Successful!");
-        await ctx.redirect('/');
+        await ctx.render('success.html');
     }
 }
