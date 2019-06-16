@@ -1,6 +1,5 @@
 const fetch = require('node-fetch');
-
-const SERVER = 'http://localhost:8000/vote';
+const _ = require('dotenv').config();
 
 module.exports = async (ctx) => {
     let obj = ctx.request.body;
@@ -8,14 +7,14 @@ module.exports = async (ctx) => {
 
     console.log(obj);
 
-    let res = await fetch(SERVER, {
+    let res = await fetch(process.env.SERVER, {
         method: 'POST',
         body: JSON.stringify(obj)
     })
     .then(res => res.json())
-    .then(obj => {
-        console.log(obj);
-        return obj;
+    .then(res => {
+        console.log(res);
+        return res;
     });
 
     if(!res.status){
