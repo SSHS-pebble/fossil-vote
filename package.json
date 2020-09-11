@@ -10,7 +10,7 @@
     "koa-body": "^4.1.0",
     "koa-router": "^7.4.0",
     "koa-views": "^6.2.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "static-koa-router": "^1.0.3"
   }
 }
